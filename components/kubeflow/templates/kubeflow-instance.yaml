@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-instance
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: '{{ .Values.repoURL }}'
+    targetRevision: '{{ .Values.version }}'
+    path: example
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kubeflow
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+  
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    name: istio-validator-istio-system
+    jsonPointers:
+    - /webhooks
