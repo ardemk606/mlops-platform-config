@@ -1,0 +1,3 @@
+kubeflow:
+  version: v1.10.0
+  repoURL: https://github.com/kubeflow/manifests.git
