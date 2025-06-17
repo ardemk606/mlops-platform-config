@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: deploykf
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: deploykf
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+  source:
+    repoURL: "https://github.com/ardemk606/mlops-platform-config.git"
+    targetRevision: HEAD 
+    path: config/deploykf
+
+    plugin:
+      name: deploykf
+      env:
+        - name: DEPLOYKF_GENERATOR_PATH
+          value: /generator
+        - name: DEPLOYKF_VALUES_FILE
+          value: /app/values.yaml

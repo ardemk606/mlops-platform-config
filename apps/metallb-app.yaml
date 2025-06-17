@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://metallb.github.io/metallb
+    chart: metallb
+    targetRevision: 0.14.5
+    helm:
+      releaseName: metallb
+      values: |
+        crds:
+          enabled: true
+
+        ipAddressPools:
+        - name: default-pool
+          addresses:
+          - 10.131.0.200-10.131.0.220
+
+        l2Advertisements:
+        - name: default-l2
+          ipAddressPools:
+          - default-pool
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,11 @@
+deploykf_generator:
+  version: v0.2
+
+deploykf_core:
+  deploykf_dashboard:
+    ingress:
+      hostname: "kubeflow.jmlc.com"
+
+  deploykf_istio_gateway:
+    service:
+      type: LoadBalancer
