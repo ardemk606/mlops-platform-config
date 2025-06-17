@@ -1,3 +1,2 @@
-kubeflow:
-  version: v1.8.0
-  repoURL: https://github.com/kubeflow/manifests.git
+version: v1.8.0
+repoURL: https://github.com/kubeflow/manifests.git
