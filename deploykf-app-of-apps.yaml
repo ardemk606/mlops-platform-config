@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/deployKF/deployKF'
-    targetRevision: v0.2.2
+    targetRevision: v0.1.5
     path: generator/app-of-apps/
     helm:
       valueFiles:
