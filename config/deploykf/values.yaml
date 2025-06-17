@@ -1,5 +1,0 @@
-deploykf_core:
-  deploykf_auth:
-    hostname: "deploykf.local.test"
-    kubeflow_hostname: "kubeflow.local.test"
-    minio_hostname: "minio.local.test"
